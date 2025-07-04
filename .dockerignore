@@ -1,0 +1,71 @@
+# Ignore unnecessary files to reduce Docker image size and improve build performance
+photos
+repo_content.txt
+struktur.txt
+
+# Python and build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py.class
+.python-version
+*.egg-info/
+*.egg
+dist/
+build/
+pip-log.txt
+
+# Development and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and configuration
+# .env
+
+# Log files
+*.log
+logs/*.log
+!logs/.keep  # Keep directory structure if needed
+
+# Test and documentation
+tests/
+docs/
+coverage.xml
+*.cover
+*.mo
+*.pot
+
+# Cache and temporary files
+.cache/
+*.tmp
+*.bak
+
+# Version control
+.git/
+.gitignore
+.gitmodules
+.gitattributes
+
+# Docker files
+Dockerfile
+docker-compose*
+.dockerignore
+
+# ESP32-CAM and media files
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+*.mov
+
+# Exceptions (include these)
+!detection/features/
+!config/settings.py
+!main.py
+!requirements.txt

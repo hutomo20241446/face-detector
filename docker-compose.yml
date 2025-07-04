@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  face-detection-v3:
+    build: .
+    container_name: face-detector
+    restart: unless-stopped
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - CAMERA_URL=${CAMERA_URL}
+      - CAMERA_TIMEOUT=${CAMERA_TIMEOUT}
+      - CAMERA_RETRY_INTERVAL=${CAMERA_RETRY_INTERVAL}
+      - MIN_MATCH_COUNT=${MIN_MATCH_COUNT}
+      - REQUIRED_DETECTION_DURATION=${REQUIRED_DETECTION_DURATION}
+      - DETECTION_INTERVAL=${DETECTION_INTERVAL}
+      - LOG_LEVEL=${LOG_LEVEL}
+    volumes:
+      - ./logs:/app/logs
+      - ./photos:/app/photos
+      - ./detection/features:/app/detection/features
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

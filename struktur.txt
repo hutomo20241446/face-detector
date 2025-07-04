@@ -1,0 +1,44 @@
+face_detection_v3/
+│
+├── config/                           # Konfigurasi global sistem
+│   ├── __init__.py                   # Menandai direktori `config` sebagai package Python
+│   ├── camera.py                     # Konfigurasi koneksi ke kamera streaming (ESP32-CAM)
+│   ├── database.py                   # Konfigurasi koneksi database menggunakan SQLAlchemy
+│   └── settings.py                   # Manajemen environment variable dan pengaturan global
+│
+├── detection/                        # Modul utama untuk deteksi wajah dan manajemen fitur
+│   ├── features/                     # Menyimpan fitur foto hasil ekstraksi SIFT (*.npy)
+│   │   └── __init__.py               
+│   ├── __init__.py                   
+│   ├── downloader.py                 # Menangani unduh foto dari database dan ekstraksi fitur SIFT
+│   ├── detector.py                   # Detektor tanpa GUI (tidak digunakan di `main.py`)
+│   └── matcher.py                    # Melakukan pencocokan fitur wajah menggunakan SIFT + FLANN
+│
+├── models/                           # Representasi entitas data dan skema tabel
+│   ├── __init__.py                   
+│   └── student.py                    # Model `StudentDB` untuk ORM dan struktur `Student` non-ORM
+│
+├── services/                         # Layanan-layanan utama seperti kamera dan kehadiran
+│   ├── __init__.py                   # Penanda package `services`
+│   ├── camera_service.py             # Abstraksi pengambilan frame dari kamera (dengan retry dan fallback)
+│   └── attendance_service.py         # Layanan pencatatan kehadiran ke database berdasarkan sesi dan waktu
+│
+├── logs/                             # Direktori log aplikasi
+│   └── detection.log                 # File log utama untuk proses deteksi
+│
+├── photos/                           # Direktori untuk download dan proses foto referensi
+│   ├── __init__.py                   
+│   └── download_photos.py            # Memulai proses unduh foto mahasiswa dan ekstraksi SIFT 
+│
+├── utils/                            # Utilitas dan helper
+│   ├── __init__.py                   
+│   ├── logging.py                    # Konfigurasi logging (log ke console dan file)
+│   └── retry.py                      # Dekorator retry universal untuk fungsi yang rentan gagal (koneksi, download, dsb)
+│
+├── .dockerignore                     # File untuk mengecualikan file saat build Docker image
+├── .env                              # File environment variables
+├── .docker-compose.yml               # Menjalankan container dengan volume, env var, dan network (auto restart)
+├── Dockerfile                        # Konfigurasi Docker untuk menjalankan sistem face detector
+├── main.py                           # Program utama: streaming kamera, deteksi wajah, dan presensi otomatis
+├── README.md                         # Dokumentasi proyek: deskripsi, cara pakai, setup
+└── requirements.txt                  # Daftar dependensi Python untuk aplikasi ini
